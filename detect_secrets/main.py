@@ -144,8 +144,6 @@ def _perform_scan(args, plugins, automaton, word_list_hash):
 
     :rtype: dict
     """
-    print(args.import_filename)
-    return 0
     old_baseline = _get_existing_baseline(args.import_filename)
     if old_baseline:
         plugins = initialize.merge_plugins_from_baseline(
@@ -206,6 +204,8 @@ def _get_existing_baseline(import_filename):
     # Favors --update argument over stdin.
     if import_filename:
         return _read_from_file(import_filename[0])
+    else
+        return None
     if not sys.stdin.isatty():
         stdin = sys.stdin.read().strip()
         if stdin:
