@@ -144,8 +144,9 @@ def _perform_scan(args, plugins, automaton, word_list_hash):
 
     :rtype: dict
     """
-    old_baseline = _get_existing_baseline(args.import_filename)
+    print(args.import_filename)
     return 0
+    old_baseline = _get_existing_baseline(args.import_filename)
     if old_baseline:
         plugins = initialize.merge_plugins_from_baseline(
             _get_plugins_from_baseline(old_baseline),
