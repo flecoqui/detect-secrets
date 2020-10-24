@@ -204,12 +204,11 @@ def _get_existing_baseline(import_filename):
     # Favors --update argument over stdin.
     if import_filename:
         return _read_from_file(import_filename[0])
-    else:
-        return None
     if not sys.stdin.isatty():
         stdin = sys.stdin.read().strip()
         if stdin:
             return json.loads(stdin)
+    return None
 
 
 def _read_from_file(filename):  # pragma: no cover
