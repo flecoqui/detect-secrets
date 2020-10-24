@@ -43,7 +43,6 @@ def main(argv=sys.argv[1:]):
             automaton=automaton,
             should_verify_secrets=not args.no_verify,
         )
-        return 0
         if args.string:
             print('parse_scan_string')
             line = args.string
@@ -61,6 +60,7 @@ def main(argv=sys.argv[1:]):
                 automaton,
                 word_list_hash,
             )
+            return 0
 
             print('parse_scan_files_done')
             if args.import_filename:
