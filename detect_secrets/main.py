@@ -60,7 +60,6 @@ def main(argv=sys.argv[1:]):
                 automaton,
                 word_list_hash,
             )
-            return 0
 
             print('parse_scan_files_done')
             if args.import_filename:
@@ -204,11 +203,12 @@ def _get_existing_baseline(import_filename):
     # Favors --update argument over stdin.
     if import_filename:
         return _read_from_file(import_filename[0])
+    return None
+    print('sys.stdin.isatty')
     if not sys.stdin.isatty():
         stdin = sys.stdin.read().strip()
         if stdin:
             return json.loads(stdin)
-    return None
 
 
 def _read_from_file(filename):  # pragma: no cover
