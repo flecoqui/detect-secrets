@@ -30,6 +30,7 @@ def main(argv=sys.argv[1:]):
         automaton = None
         word_list_hash = None
         print('parse_scan')
+        return 0
         if args.word_list_file:
             print('parse_scan_automaton')
             automaton, word_list_hash = build_automaton(args.word_list_file)
