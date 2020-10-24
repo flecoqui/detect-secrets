@@ -144,6 +144,7 @@ def _perform_scan(args, plugins, automaton, word_list_hash):
 
     :rtype: dict
     """
+    return 0
     old_baseline = _get_existing_baseline(args.import_filename)
     if old_baseline:
         plugins = initialize.merge_plugins_from_baseline(
@@ -151,7 +152,7 @@ def _perform_scan(args, plugins, automaton, word_list_hash):
             args,
             automaton=automaton,
         )
-    return 0
+    
     # Favors CLI arguments over existing baseline configuration
     if old_baseline:
         if not args.exclude_files:
