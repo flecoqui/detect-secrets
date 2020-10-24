@@ -54,13 +54,14 @@ def main(argv=sys.argv[1:]):
 
         else:
             print('parse_scan_files')
+            return 0
             baseline_dict = _perform_scan(
                 args,
                 plugins,
                 automaton,
                 word_list_hash,
             )
-            return 0
+            
 
             print('parse_scan_files_done')
             if args.import_filename:
