@@ -21,6 +21,7 @@ def main(argv=sys.argv[1:]):
     if len(sys.argv) == 1:  # pragma: no cover
         sys.argv.append('--help')
 
+    print('parse_args')
     args = parse_args(argv)
     if args.verbose:  # pragma: no cover
         log.set_debug_level(args.verbose)
@@ -28,7 +29,9 @@ def main(argv=sys.argv[1:]):
     if args.action == 'scan':
         automaton = None
         word_list_hash = None
+        print('parse_scan')
         if args.word_list_file:
+            print('parse_scan_automaton')
             automaton, word_list_hash = build_automaton(args.word_list_file)
 
         # Plugins are *always* rescanned with fresh settings, because
@@ -41,6 +44,7 @@ def main(argv=sys.argv[1:]):
             should_verify_secrets=not args.no_verify,
         )
         if args.string:
+            print('parse_scan_string')
             line = args.string
 
             if isinstance(args.string, bool):
@@ -49,6 +53,7 @@ def main(argv=sys.argv[1:]):
             _scan_string(line, plugins)
 
         else:
+            print('parse_scan_files')
             baseline_dict = _perform_scan(
                 args,
                 plugins,
@@ -56,12 +61,15 @@ def main(argv=sys.argv[1:]):
                 word_list_hash,
             )
 
+            print('parse_scan_files_done')
             if args.import_filename:
+                print('parse_scan_files_done_filename')
                 write_baseline_to_file(
                     filename=args.import_filename[0],
                     data=baseline_dict,
                 )
             else:
+                print('parse_scan_files_done_done')
                 print(
                     baseline.format_baseline_for_output(
                         baseline_dict,
